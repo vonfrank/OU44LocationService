@@ -1,0 +1,51 @@
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Color for toolbar, -->
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+
+        <!-- Color for status bar, -->
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <!-- Color for fab, -->
+        <item name="android:colorAccent">@color/colorAccent</item>
+
+        <!-- Color for divider -->
+        <item name="android:listDivider">@color/dividerColor</item>
+
+        <!-- Text color for toolbar title, -->
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+        <!-- Default text color on light background -->
+        <item name="android:textColor">@color/textColor</item>
+
+        <!-- Hint color for EditText and AutoCompleteTextView -->
+        <item name="android:textColorHint">@color/textColorSecondary</item>
+
+        <!-- Default light background -->
+        <item name="android:windowBackground">@color/windowBackground</item>
+
+        <!-- Set status bar to have transparent properties -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!-- Bottom line color for input fields in normal state -->
+        <item name="android:colorControlNormal">@color/colorPrimary</item>
+
+        <!-- Bottom line color for input fields in hover/active state -->
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
+
+        <!-- Background color of standard UI buttons -->
+        <item name="android:colorButtonNormal">@color/colorAccent</item>
+    </style>
+    <!-- Toolbar -->
+    <style name="ToolbarTitle" parent="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="ExtendedToolbarTitle" parent="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/textColorSecondary</item>
+    </style>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single" android:id="@+id/nav_group1">
+
+        <!-- Static navigation drawer elements goes here -->
+        <item
+            android:id="@+id/nav_main"
+            android:icon="@drawable/ic_main_black_24dp"
+            android:title="Main page" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_place_black_24dp"
+            android:title="Map" />
+    </group>
+    <!-- Adding new group creates a divider, defined by style -->
+
+</menu>
