@@ -40,7 +40,6 @@ public class MainFragment extends Fragment {
         ble_status = (TextView) rootView.findViewById(R.id.ble_status);
 
         grantPermissions();
-        scanBLEDevices();
 
         return rootView;
     }
@@ -64,9 +63,5 @@ public class MainFragment extends Fragment {
                 permission_status.append(": DISABLED\n");
             }
         }
-    }
-
-    private void scanBLEDevices(){
-        ble_status.setText("Number of BLE devices detected: ");
     }
 }
