@@ -25,7 +25,8 @@ public class MainFragment extends Fragment {
             Manifest.permission.BLUETOOTH_ADMIN,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.INTERNET};
+            Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_NETWORK_STATE};
 
     @Override
     public void onCreate(Bundle savedInstanceState){

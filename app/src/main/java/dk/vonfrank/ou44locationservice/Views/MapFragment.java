@@ -3,7 +3,6 @@ package dk.vonfrank.ou44locationservice.Views;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -11,13 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import dk.vonfrank.ou44locationservice.R;
 
@@ -60,17 +56,6 @@ public class MapFragment extends Fragment {
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
-
-                googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-
-                    @Override
-                    public void onMyLocationChange(Location location) {
-                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                        googleMap.clear();
-                        googleMap.addMarker(new MarkerOptions().position(latLng).title("You are here"));
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    }
-                });
             }
         });
 

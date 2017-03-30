@@ -17,20 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.MainActivity">
-
-        </activity>
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDN23Q9-B8eQ_iXbgRCGmCnQJ9QV4P63O4" />
-
-        <activity android:name=".Activities.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDN23Q9-B8eQ_iXbgRCGmCnQJ9QV4P63O4" />
 
         <service android:name="com.kontakt.sdk.android.ble.service.ProximityService" android:exported="false"/>
     </application>
