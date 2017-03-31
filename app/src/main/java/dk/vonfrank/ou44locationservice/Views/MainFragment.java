@@ -19,7 +19,7 @@ import dk.vonfrank.ou44locationservice.R;
 
 public class MainFragment extends Fragment {
 
-    private TextView permission_status, ble_status;
+    private TextView permission_status;
     private String[] permissions = {
             Manifest.permission.BLUETOOTH,
             Manifest.permission.BLUETOOTH_ADMIN,
@@ -38,7 +38,6 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         permission_status = (TextView) rootView.findViewById(R.id.permission_status);
-        ble_status = (TextView) rootView.findViewById(R.id.ble_status);
 
         grantPermissions();
 

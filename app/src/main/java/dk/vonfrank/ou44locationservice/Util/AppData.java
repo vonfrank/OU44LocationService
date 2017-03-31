@@ -36,6 +36,14 @@ public class AppData {
         iBeaconDevices.add(iBeaconDevice);
     }
 
+    public void removeIBeaconDevice(IBeaconDevice iBeaconDevice){
+        for(IBeaconDevice ibd : iBeaconDevices){
+            if(ibd.getUniqueId().equals(iBeaconDevice)){
+                iBeaconDevices.remove(ibd);
+            }
+        }
+    }
+
     public Boolean checkForDevice(IBeaconDevice iBeaconDevice){
         if(iBeaconDevices == null){
             iBeaconDevices = new ArrayList<IBeaconDevice>();
@@ -62,8 +70,9 @@ public class AppData {
     public IBeaconDevice getIBeaconDeviceWithHighestRSSI(){
         IBeaconDevice temp = null;
         for(IBeaconDevice ibd : iBeaconDevices){
+            System.out.println(ibd.getUniqueId() + ": " + ibd.getRssi());
             if(temp != null){
-                if(ibd.getRssi() > temp.getRssi()){
+                if(ibd.getRssi() < temp.getRssi()){
                     temp = ibd;
                 }
             } else {
@@ -75,7 +84,7 @@ public class AppData {
 
     public BeaconItem getBeaconData(IBeaconDevice iBeaconDevice){
         for(BeaconItem bi : beaconItems){
-            if(bi.getInstanceId().equals(iBeaconDevice.getUniqueId())){
+            if(bi.getAlias().equals(iBeaconDevice.getUniqueId())){
                 return bi;
             }
         }

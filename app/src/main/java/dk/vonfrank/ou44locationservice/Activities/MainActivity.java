@@ -1,5 +1,6 @@
 package dk.vonfrank.ou44locationservice.Activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,8 +12,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.text.Text;
 import com.kontakt.sdk.android.ble.connection.OnServiceReadyListener;
 import com.kontakt.sdk.android.ble.manager.ProximityManager;
 import com.kontakt.sdk.android.ble.manager.ProximityManagerFactory;
@@ -28,6 +31,7 @@ import dk.vonfrank.ou44locationservice.Models.BeaconItem;
 import dk.vonfrank.ou44locationservice.R;
 import dk.vonfrank.ou44locationservice.Util.AppData;
 import dk.vonfrank.ou44locationservice.Util.JSONReader;
+import dk.vonfrank.ou44locationservice.Views.IndoorFragment;
 import dk.vonfrank.ou44locationservice.Views.MainFragment;
 import dk.vonfrank.ou44locationservice.Views.MapFragment;
 
@@ -154,13 +158,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private IBeaconListener createIBeaconListener() {
         return new SimpleIBeaconListener() {
             //TODO implement this nicer!
+
+            TextView room_content;
+
+            @Override
+            public void onIBeaconLost(IBeaconDevice ibeacon, IBeaconRegion region) {
+                super.onIBeaconLost(ibeacon, region);
+                AppData.getInstance().removeIBeaconDevice(ibeacon);
+                if(AppData.getInstance().getiBeaconDevices().isEmpty()){
+                    MapFragment mapFragment = new MapFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment_container, mapFragment).commit();
+                }
+            }
+
             @Override
             public void onIBeaconDiscovered(IBeaconDevice ibeacon, IBeaconRegion region) {
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_LONG;
 
-                Toast toast = Toast.makeText(context, R.string.found_ibeacon_device + ibeacon.getName(), duration);
-                toast.show();
+                room_content = (TextView) findViewById(R.id.room_content);
+
                 if(!AppData.getInstance().checkForDevice(ibeacon)){
                     AppData.getInstance().addIBeaconDevice(ibeacon);
                 }
@@ -168,8 +185,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(!AppData.getInstance().getiBeaconDevices().isEmpty()){
                     BeaconItem bi = AppData.getInstance().getBeaconData(AppData.getInstance().getIBeaconDeviceWithHighestRSSI());
                     if(bi != null){
-                        toast = Toast.makeText(context, "FOUND ITEM!!! You are in room: " + bi.getRoom(), duration);
-                        toast.show();
+                        IndoorFragment indoorFragment = new IndoorFragment();
+                        if(room_content != null){
+                            room_content.setText(bi.getRoom() + ", " + bi.getRoomName() + " at level " + bi.getLevel());
+                        }
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment_container, indoorFragment).commit();
                     }
                 }
             }
